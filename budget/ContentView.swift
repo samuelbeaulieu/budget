@@ -28,11 +28,14 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteItems)
             }
+            .navigationTitle("Transactions")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
                 ToolbarItem {
+                    if !items.isEmpty {
+                        EditButton()
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: addItem) {
                         Label("Add Item", systemImage: "plus")
                     }
