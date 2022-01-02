@@ -14,8 +14,10 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newTransaction = Transaction(context: viewContext)
+            newTransaction.timestamp = Date()
+            newTransaction.amount = NSDecimalNumber(decimal: 0)
+            newTransaction.type = Int32.random(in: 0...2)
         }
         do {
             try viewContext.save()

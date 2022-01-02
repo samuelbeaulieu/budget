@@ -80,6 +80,24 @@ struct ContentView: View {
     }
 }
 
+
+enum TransactionType: Int32, CaseIterable {
+    case income
+    case expense
+    case transfer
+    
+    var displayString: String {
+        switch self {
+        case .expense:
+            return "Expense"
+        case .income:
+            return "Income"
+        case .transfer:
+            return "Transfer"
+        }
+    }
+}
+
 private let itemFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
