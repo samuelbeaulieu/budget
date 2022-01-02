@@ -12,35 +12,68 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Transaction.timestamp, ascending: false)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    private var transactions: FetchedResults<Transaction>
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(items) { item in
+                ForEach(transactions) { transaction in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        ScrollView() {                            Text(transaction.amount!, formatter: currencyFormatter)
+                                .font(.title)
+                            Text(TransactionType(rawValue: transaction.type)!.displayString)
+                            Text(transaction.timestamp!, formatter: dateFormatter)
+                            Spacer()
+                        }
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                EditButton()
+                            }
+                        }
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        HStack(alignment: .center) {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(.pink)
+                                .frame(width: 28, height: 28)
+                                .overlay(
+                                    Image(systemName: "face.smiling")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 20))
+                                )
+                                .padding(.trailing, 5)
+                            VStack(alignment: .leading) {
+                                Text("Apple One")
+                                    .fontWeight(.semibold)
+                                    .lineLimit(1)
+                                Text("Credit Card")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                                    .lineLimit(1)
+                            }
+                        }
+                        .badge(
+                            Text(transaction.amount!, formatter: currencyFormatter)
+                        )
                     }
                 }
                 .onDelete(perform: deleteItems)
-                if items.isEmpty {
+                if transactions.isEmpty {
                     Text("No transactions")
                 }
             }
             .navigationTitle("Transactions")
             .toolbar {
                 ToolbarItem {
-                    if !items.isEmpty {
+                    if !transactions.isEmpty {
                         EditButton()
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                        Label("Add Transaction", systemImage: "plus")
                     }
                 }
             }
@@ -50,8 +83,10 @@ struct ContentView: View {
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newTransaction = Transaction(context: viewContext)
+            newTransaction.timestamp = Date()
+            newTransaction.amount = 25580.56
+            newTransaction.type = TransactionType.expense.rawValue
 
             do {
                 try viewContext.save()
@@ -66,7 +101,7 @@ struct ContentView: View {
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { transactions[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
@@ -98,12 +133,24 @@ enum TransactionType: Int32, CaseIterable {
     }
 }
 
-private let itemFormatter: DateFormatter = {
+private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
     formatter.timeStyle = .medium
     return formatter
 }()
+
+private let currencyFormatter: NumberFormatter = {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    return formatter
+}()
+
+extension Decimal {
+    var doubleValue: Double {
+        return NSDecimalNumber(decimal: self).doubleValue
+    }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
