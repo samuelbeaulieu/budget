@@ -36,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DC7AD5002780F4570053BF72 /* budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC7AD5002780F4570053BF72 /* Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC7AD5032780F4570053BF72 /* budgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = budgetApp.swift; sourceTree = "<group>"; };
 		DC7AD5052780F4570053BF72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DC7AD5072780F4580053BF72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		DC7AD5012780F4570053BF72 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DC7AD5002780F4570053BF72 /* budget.app */,
+				DC7AD5002780F4570053BF72 /* Budget.app */,
 				DC7AD5152780F4580053BF72 /* budgetTests.xctest */,
 				DC7AD51F2780F4580053BF72 /* budgetUITests.xctest */,
 			);
@@ -150,7 +150,7 @@
 			);
 			name = budget;
 			productName = budget;
-			productReference = DC7AD5002780F4570053BF72 /* budget.app */;
+			productReference = DC7AD5002780F4570053BF72 /* Budget.app */;
 			productType = "com.apple.product-type.application";
 		};
 		DC7AD5142780F4580053BF72 /* budgetTests */ = {
@@ -442,7 +442,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.beaulieu.budget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Budget;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -472,7 +472,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.beaulieu.budget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Budget;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
