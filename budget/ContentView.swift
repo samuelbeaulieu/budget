@@ -27,6 +27,9 @@ struct ContentView: View {
                     }
                 }
                 .onDelete(perform: deleteItems)
+                if items.isEmpty {
+                    Text("No transactions")
+                }
             }
             .navigationTitle("Transactions")
             .toolbar {
@@ -41,7 +44,7 @@ struct ContentView: View {
                     }
                 }
             }
-            Text("Select an item")
+            Text("Select an transaction")
         }
     }
 
