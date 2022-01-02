@@ -113,19 +113,25 @@ All text in the app should be localized in english from the start.
 
 More details to come...
 
-### Phase 8 - Full support for iPad & Mac
+### Phase 8 - Siri Shortcuts
+
+Use Siri Shortcuts to quickly add transactions.
+
+More details to come...
+
+### Phase 9 - Full support for iPad & Mac
 
 SwiftUI should make it usable on both iPad and Mac before this phase. If there are problems with the design, it should be easy to fix in this phase.
 
 More details to come...
 
-### Phase 9 - Themes
+### Phase 10 - Themes
 
 The app should be able to switch between light and dark mode automatically from the start. Manually switching between light and dark mode, color themes and other visual customization options will be done here.
 
 More details to come...
 
-### Phase 10 - Add Photos & Documents to the transaction
+### Phase 11 - Add Photos & Documents to the transaction
 
 I see it a lot in other apps, not sure if it's really necessary.
 
