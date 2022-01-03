@@ -13,7 +13,7 @@ struct budgetApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TransactionList()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

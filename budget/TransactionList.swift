@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct ContentView: View {
+struct TransactionList: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -152,8 +152,8 @@ extension Decimal {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct TransactionList_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        TransactionList().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

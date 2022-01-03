@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DC7AD5042780F4570053BF72 /* budgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AD5032780F4570053BF72 /* budgetApp.swift */; };
-		DC7AD5062780F4570053BF72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AD5052780F4570053BF72 /* ContentView.swift */; };
+		DC7AD5062780F4570053BF72 /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AD5052780F4570053BF72 /* TransactionList.swift */; };
 		DC7AD5082780F4580053BF72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC7AD5072780F4580053BF72 /* Assets.xcassets */; };
 		DC7AD50B2780F4580053BF72 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC7AD50A2780F4580053BF72 /* Preview Assets.xcassets */; };
 		DC7AD50D2780F4580053BF72 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AD50C2780F4580053BF72 /* Persistence.swift */; };
@@ -38,7 +38,7 @@
 /* Begin PBXFileReference section */
 		DC7AD5002780F4570053BF72 /* Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC7AD5032780F4570053BF72 /* budgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = budgetApp.swift; sourceTree = "<group>"; };
-		DC7AD5052780F4570053BF72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DC7AD5052780F4570053BF72 /* TransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
 		DC7AD5072780F4580053BF72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC7AD50A2780F4580053BF72 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DC7AD50C2780F4580053BF72 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				DC7AD5032780F4570053BF72 /* budgetApp.swift */,
-				DC7AD5052780F4570053BF72 /* ContentView.swift */,
+				DC7AD5052780F4570053BF72 /* TransactionList.swift */,
 				DC7AD5072780F4580053BF72 /* Assets.xcassets */,
 				DC7AD50C2780F4580053BF72 /* Persistence.swift */,
 				DC7AD50E2780F4580053BF72 /* budget.xcdatamodeld */,
@@ -264,7 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC7AD50D2780F4580053BF72 /* Persistence.swift in Sources */,
-				DC7AD5062780F4570053BF72 /* ContentView.swift in Sources */,
+				DC7AD5062780F4570053BF72 /* TransactionList.swift in Sources */,
 				DC7AD5102780F4580053BF72 /* budget.xcdatamodeld in Sources */,
 				DC7AD5042780F4570053BF72 /* budgetApp.swift in Sources */,
 			);
