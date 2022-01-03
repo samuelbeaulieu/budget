@@ -244,6 +244,27 @@ struct SettingsList: View {
                                 )
                         }
                     }
+                    Link(destination: URL(string: "https://github.com/samuelbeaulieu/budget/blob/master/README.md")!) {
+                        HStack() {
+                            Label {
+                                Text("Roadmap")
+                                    .foregroundColor(.black)
+                            } icon: {
+                                RoundedRectangle(cornerRadius: 6)
+                                    .fill(.gray)
+                                    .frame(width: 27, height: 27)
+                                    .overlay(
+                                        Image(systemName: "calendar")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 16))
+                                    )
+                            }
+                            Spacer()
+                            Image(systemName: "link")
+                                .font(.footnote)
+                                .foregroundColor(.accentColor)
+                        }
+                    }
                     NavigationLink {
                         ScrollView() {
                             Text("Details")
