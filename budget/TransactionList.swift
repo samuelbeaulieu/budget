@@ -35,15 +35,15 @@ struct TransactionList: View {
                         }
                     } label: {
                         HStack(alignment: .center) {
-                            RoundedRectangle(cornerRadius: 5)
+                            RoundedRectangle(cornerRadius: 6)
                                 .fill(.pink)
-                                .frame(width: 28, height: 28)
+                                .frame(width: 27, height: 27)
                                 .overlay(
                                     Image(systemName: "face.smiling")
                                         .foregroundColor(.white)
-                                        .font(.system(size: 20))
+                                        .font(.system(size: 16))
                                 )
-                                .padding(.trailing, 5)
+                                .padding(.trailing, 8)
                             VStack(alignment: .leading) {
                                 Text("Apple One")
                                     .fontWeight(.semibold)
