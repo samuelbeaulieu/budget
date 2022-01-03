@@ -15,6 +15,8 @@ struct TransactionList: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Transaction.timestamp, ascending: false)],
         animation: .default)
     private var transactions: FetchedResults<Transaction>
+    
+    @State private var showingSheet = false
 
     var body: some View {
         NavigationView {
@@ -66,6 +68,11 @@ struct TransactionList: View {
             }
             .navigationTitle("Transactions")
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: openSettingsSheet) {
+                        Label("Open Settings", systemImage: "gearshape")
+                    }
+                }
                 ToolbarItem {
                     if !transactions.isEmpty {
                         EditButton()
@@ -77,8 +84,17 @@ struct TransactionList: View {
                     }
                 }
             }
+            .sheet(isPresented: $showingSheet) {
+                SettingsList()
+                    .interactiveDismissDisabled(true)
+            }
             Text("Select an transaction")
         }
+    }
+    
+    private func openSettingsSheet() {
+        print("openSettingsSheet")
+        showingSheet = true
     }
 
     private func addItem() {
