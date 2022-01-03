@@ -37,15 +37,15 @@ struct TransactionList: View {
                         }
                     } label: {
                         HStack(alignment: .center) {
-                            RoundedRectangle(cornerRadius: 6)
+                            RoundedRectangle(cornerRadius: 3)
                                 .fill(.pink)
-                                .frame(width: 27, height: 27)
+                                .frame(width: 35, height: 35)
                                 .overlay(
                                     Image(systemName: "face.smiling")
                                         .foregroundColor(.white)
-                                        .font(.system(size: 16))
+                                        .font(.system(size: 22))
                                 )
-                                .padding(.trailing, 8)
+                                .padding(.trailing, 5)
                             VStack(alignment: .leading) {
                                 Text("Apple One")
                                     .fontWeight(.semibold)
@@ -88,7 +88,6 @@ struct TransactionList: View {
                 SettingsList()
                     .interactiveDismissDisabled(true)
             }
-            Text("Select an transaction")
         }
     }
     
