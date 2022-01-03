@@ -81,7 +81,7 @@ Setting a budget with a weekly or monthly limit.
 
 More details to come...
 
-### Phase 5 - Insights & Trends
+### Phase 5 - Insights & Trends, Year in Review (à la Spotify)
 
 Graphs to show the amount spent per category, per month, per year, etc.
 
