@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DC06955C27829E83009FCA1A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC06955B27829E83009FCA1A /* Settings.swift */; };
+		DC36DD5C2795016A00D61FB3 /* TransactionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC36DD5B2795016A00D61FB3 /* TransactionRow.swift */; };
 		DC7AD5042780F4570053BF72 /* budgetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AD5032780F4570053BF72 /* budgetApp.swift */; };
 		DC7AD5062780F4570053BF72 /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7AD5052780F4570053BF72 /* TransactionList.swift */; };
 		DC7AD5082780F4580053BF72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC7AD5072780F4580053BF72 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		DC06955B27829E83009FCA1A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		DC36DD5B2795016A00D61FB3 /* TransactionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRow.swift; sourceTree = "<group>"; };
 		DC7AD5002780F4570053BF72 /* Budget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC7AD5032780F4570053BF72 /* budgetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = budgetApp.swift; sourceTree = "<group>"; };
 		DC7AD5052780F4570053BF72 /* TransactionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				DC7AD50E2780F4580053BF72 /* budget.xcdatamodeld */,
 				DC7AD5092780F4580053BF72 /* Preview Content */,
 				DC06955B27829E83009FCA1A /* Settings.swift */,
+				DC36DD5B2795016A00D61FB3 /* TransactionRow.swift */,
 			);
 			path = budget;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCA28DF82794D0CF00594C49 /* Category+CoreDataClass.swift in Sources */,
+				DC36DD5C2795016A00D61FB3 /* TransactionRow.swift in Sources */,
 				DC7AD50D2780F4580053BF72 /* Persistence.swift in Sources */,
 				DC7AD5062780F4570053BF72 /* TransactionList.swift in Sources */,
 				DCA28DF92794D0CF00594C49 /* Category+CoreDataProperties.swift in Sources */,

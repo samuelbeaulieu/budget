@@ -23,7 +23,8 @@ struct TransactionList: View {
             List {
                 ForEach(transactions) { transaction in
                     NavigationLink {
-                        ScrollView() {                            Text(transaction.amount!, formatter: currencyFormatter)
+                        ScrollView() {
+                            Text(transaction.amount!, formatter: currencyFormatter)
                                 .font(.title)
                             Text(TransactionType(rawValue: transaction.type)!.displayString)
                             Text(transaction.timestamp!, formatter: dateFormatter)
@@ -36,29 +37,7 @@ struct TransactionList: View {
                             }
                         }
                     } label: {
-                        HStack(alignment: .center) {
-                            RoundedRectangle(cornerRadius: 3)
-                                .fill(.pink)
-                                .frame(width: 35, height: 35)
-                                .overlay(
-                                    Image(systemName: "face.smiling")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 22))
-                                )
-                                .padding(.trailing, 5)
-                            VStack(alignment: .leading) {
-                                Text("Apple One")
-                                    .fontWeight(.semibold)
-                                    .lineLimit(1)
-                                Text("Credit Card")
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                                    .lineLimit(1)
-                            }
-                        }
-                        .badge(
-                            Text(transaction.amount!, formatter: currencyFormatter)
-                        )
+                        TransactionRow(transaction: transaction)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -99,9 +78,11 @@ struct TransactionList: View {
     private func addItem() {
         withAnimation {
             let newTransaction = Transaction(context: viewContext)
+            newTransaction.id = UUID()
             newTransaction.timestamp = Date()
             newTransaction.amount = 25580.56
             newTransaction.type = TransactionType.expense.rawValue
+            newTransaction.name = "Apple One"
 
             do {
                 try viewContext.save()
