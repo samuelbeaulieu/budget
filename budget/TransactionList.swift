@@ -65,7 +65,6 @@ struct TransactionList: View {
             }
             .sheet(isPresented: $showingSheet) {
                 SettingsList()
-                    .interactiveDismissDisabled(true)
             }
         }
     }

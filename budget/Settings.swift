@@ -18,22 +18,7 @@ struct SettingsList: View {
             List() {
                 Section(header: Text("Categories")) {
                     NavigationLink {
-                        ScrollView() {
-                            Text("Manage Income Categories")
-                                .font(.title)
-                            Spacer()
-                        }
-                        .navigationBarTitleDisplayMode(.inline)
-                        .toolbar {
-                            ToolbarItem() {
-                                EditButton()
-                            }
-                            ToolbarItem(placement: .navigationBarTrailing) {
-                                Button(action: dismissSheet) {
-                                    Label("Add Transaction", systemImage: "plus")
-                                }
-                            }
-                        }
+                        CategoryList(categoryType: .income)
                     } label: {
                         Label {
                             Text("Manage Income")
@@ -49,22 +34,7 @@ struct SettingsList: View {
                         }
                     }
                     NavigationLink {
-                        ScrollView() {
-                            Text("Manage Expenses Categories")
-                                .font(.title)
-                            Spacer()
-                        }
-                        .navigationBarTitleDisplayMode(.inline)
-                        .toolbar {
-                            ToolbarItem() {
-                                EditButton()
-                            }
-                            ToolbarItem(placement: .navigationBarTrailing) {
-                                Button(action: dismissSheet) {
-                                    Label("Add Transaction", systemImage: "plus")
-                                }
-                            }
-                        }
+                        CategoryList(categoryType: .expense)
                     } label: {
                         Label {
                             Text("Manage Expenses")
@@ -125,13 +95,13 @@ struct SettingsList: View {
                         .navigationBarTitleDisplayMode(.inline)
                     } label: {
                         Label {
-                            Text("About")
+                            Text("Budget Pro")
                         } icon: {
                             RoundedRectangle(cornerRadius: 6)
-                                .fill(.blue)
+                                .fill(.indigo)
                                 .frame(width: 27, height: 27)
                                 .overlay(
-                                    Image(systemName: "at")
+                                    Image(systemName: "bolt.fill")
                                         .foregroundColor(.white)
                                         .font(.system(size: 16))
                                 )
@@ -158,6 +128,8 @@ struct SettingsList: View {
                                 )
                         }
                     }
+                }
+                Section() {
                     NavigationLink {
                         ScrollView() {
                             Text("Details")
@@ -167,20 +139,18 @@ struct SettingsList: View {
                         .navigationBarTitleDisplayMode(.inline)
                     } label: {
                         Label {
-                            Text("Budget Pro")
+                            Text("About")
                         } icon: {
                             RoundedRectangle(cornerRadius: 6)
-                                .fill(.indigo)
+                                .fill(.blue)
                                 .frame(width: 27, height: 27)
                                 .overlay(
-                                    Image(systemName: "bolt.fill")
+                                    Image(systemName: "at")
                                         .foregroundColor(.white)
                                         .font(.system(size: 16))
                                 )
                         }
                     }
-                }
-                Section() {
                     NavigationLink {
                         ScrollView() {
                             Text("Details")
@@ -248,7 +218,7 @@ struct SettingsList: View {
                         HStack() {
                             Label {
                                 Text("Roadmap")
-                                    .foregroundColor(.black)
+                                    .foregroundColor(Color(UIColor.label))
                             } icon: {
                                 RoundedRectangle(cornerRadius: 6)
                                     .fill(.gray)
@@ -261,7 +231,7 @@ struct SettingsList: View {
                             }
                             Spacer()
                             Image(systemName: "link")
-                                .font(.footnote)
+                                .imageScale(.small)
                                 .foregroundColor(.accentColor)
                         }
                     }
@@ -319,10 +289,10 @@ struct SettingsList: View {
                             Text("Crash Reporting & Analytics") // See Apollo for Reddit app
                         } icon: {
                             RoundedRectangle(cornerRadius: 6)
-                                .fill(.green)
+                                .fill(.orange)
                                 .frame(width: 27, height: 27)
                                 .overlay(
-                                    Image(systemName: "ladybug.fill")
+                                    Image(systemName: "chart.bar.xaxis")
                                         .foregroundColor(.white)
                                         .font(.system(size: 16))
                                 )
@@ -339,7 +309,6 @@ struct SettingsList: View {
                     }
                 }
             }
-            Text("Select a setting")
         }
     }
     

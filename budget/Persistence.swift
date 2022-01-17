@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import UIKit
 
 struct PersistenceController {
     static let shared = PersistenceController()
@@ -18,6 +19,14 @@ struct PersistenceController {
             newTransaction.timestamp = Date()
             newTransaction.amount = NSDecimalNumber(decimal: 0)
             newTransaction.type = Int32.random(in: 0...2)
+        }
+        for _ in 0..<10 {
+            let newCategory = Category(context: viewContext)
+            newCategory.id = UUID()
+            newCategory.type = Int32.random(in: 0...1)
+            newCategory.name = "Transportation"
+            newCategory.iconName = "car"
+            newCategory.foregroundColor = UIColor.blue
         }
         do {
             try viewContext.save()
