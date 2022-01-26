@@ -18,31 +18,67 @@ struct TransactionList: View {
     
     @State private var showingSheet = false
 
+    func update(_ result: FetchedResults<Transaction>) -> [[Transaction]] {
+        return Dictionary(grouping: result) { (element: Transaction) in
+            Calendar.current.startOfDay(for: element.timestamp!)
+        }.values.sorted() {
+            $0[0].timestamp! > $1[0].timestamp!
+        }
+    }
+
+    func getTotalSpent(_ section: [Transaction], type: TransactionType) -> NSDecimalNumber {
+        var total = NSDecimalNumber(decimal: 0)
+        for transaction in section {
+            if transaction.type == type.rawValue {
+                print("xyz \(transaction.amount!)")
+                total = total.adding(transaction.amount!)
+                print("xyz \(total)")
+            }
+        }
+        print("xyz total \(total)")
+        return total
+    }
+    
     var body: some View {
         NavigationView {
             List {
-                ForEach(transactions) { transaction in
-                    NavigationLink {
-                        ScrollView() {
-                            Text(transaction.amount!, formatter: currencyFormatter)
-                                .font(.title)
-                            Text(TransactionType(rawValue: transaction.type)!.displayString)
-                            Text(transaction.timestamp!, formatter: dateFormatter)
+                ForEach(update(transactions), id: \.self) { (section: [Transaction]) in
+                    Section(header: (
+                        HStack() {
+                            Text(section[0].timestamp!, formatter: mediumDateFormatter)
                             Spacer()
+                            Text(getTotalSpent(section, type: TransactionType.income), formatter: currencyFormatter)
+                                .foregroundColor(.green)
+                            Text(getTotalSpent(section, type: TransactionType.expense), formatter: currencyFormatter)
+                                .foregroundColor(.red)
                         }
-                        .navigationBarTitleDisplayMode(.inline)
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarTrailing) {
-                                EditButton()
+                    )) {
+                        ForEach(section) { transaction in
+                            NavigationLink {
+                                ScrollView() {
+                                    Text(transaction.amount!, formatter: currencyFormatter)
+                                        .font(.title)
+                                    Text(TransactionType(rawValue: transaction.type)!.displayString)
+                                    Text(transaction.timestamp!, formatter: dateTimeFormatter)
+                                    Spacer()
+                                }
+                                .navigationBarTitleDisplayMode(.inline)
+                                .toolbar {
+                                    ToolbarItem(placement: .navigationBarTrailing) {
+                                        EditButton()
+                                    }
+                                }
+                            } label: {
+                                TransactionRow(transaction: transaction)
                             }
                         }
-                    } label: {
-                        TransactionRow(transaction: transaction)
+                        .onDelete { indexSet in
+                            deleteItems(section: section, offsets: indexSet)
+                        }
+                        if transactions.isEmpty {
+                            Text("No transactions")
+                        }
                     }
-                }
-                .onDelete(perform: deleteItems)
-                if transactions.isEmpty {
-                    Text("No transactions")
                 }
             }
             .navigationTitle("Transactions")
@@ -94,9 +130,12 @@ struct TransactionList: View {
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
+    private func deleteItems(section: [Transaction], offsets: IndexSet) {
         withAnimation {
-            offsets.map { transactions[$0] }.forEach(viewContext.delete)
+            for index in offsets {
+                let item = section[index]
+                viewContext.delete(item)
+            }
 
             do {
                 try viewContext.save()
