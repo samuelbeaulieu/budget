@@ -14,10 +14,15 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
+        
+        let names = ["Apple One", "Desjardins Assurance Auto", "Petro-Canada", "Subway", "Paiement du prêt"]
+        
         for _ in 0..<10 {
             let newTransaction = Transaction(context: viewContext)
-            newTransaction.timestamp = Date()
-            newTransaction.amount = NSDecimalNumber(decimal: 0)
+            newTransaction.id = UUID()
+            newTransaction.timestamp = Date.now.addingTimeInterval(86400 * Double.random(in: 1...7))
+            newTransaction.name = names.randomElement()
+            newTransaction.amount = NSDecimalNumber(floatLiteral: Double.random(in: 20...4526.58))
             newTransaction.type = Int32.random(in: 0...2)
         }
         for _ in 0..<10 {

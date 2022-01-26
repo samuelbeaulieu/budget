@@ -59,7 +59,27 @@ extension NSDecimalNumber {
 }
 
 struct TransactionRow_Previews: PreviewProvider {
+    static let persistence = PersistenceController.preview
+        
+    static var item: Transaction = {
+        let context = persistence.container.viewContext
+        let item = Transaction(context: context)
+        item.id = UUID()
+        item.timestamp = Date()
+        item.name = "Apple One"
+        item.amount = NSDecimalNumber(decimal: 1000)
+        item.type = Int32.random(in: 2...2)
+        return item
+    }()
+
     static var previews: some View {
-        TransactionRow(transaction: Transaction())
+        List() {
+            NavigationLink {
+                Text("Details View")
+            } label: {
+                TransactionRow(transaction: item)
+                            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            }
+        }
     }
 }

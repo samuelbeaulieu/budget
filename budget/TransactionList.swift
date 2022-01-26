@@ -78,10 +78,10 @@ struct TransactionList: View {
         withAnimation {
             let newTransaction = Transaction(context: viewContext)
             newTransaction.id = UUID()
-            newTransaction.timestamp = Date()
-            newTransaction.amount = 25580.56
-            newTransaction.type = TransactionType.expense.rawValue
+            newTransaction.timestamp = Date.now.addingTimeInterval(86400 * Double.random(in: 1...7))
             newTransaction.name = "Apple One"
+            newTransaction.amount = NSDecimalNumber(floatLiteral: Double.random(in: 20...4526.58))
+            newTransaction.type = Int32.random(in: 0...2)
 
             do {
                 try viewContext.save()
