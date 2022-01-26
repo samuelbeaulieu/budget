@@ -128,24 +128,25 @@ enum TransactionType: Int32, CaseIterable {
     }
 }
 
-private let dateFormatter: DateFormatter = {
+let dateTimeFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateStyle = .short
+    formatter.dateStyle = .medium
     formatter.timeStyle = .medium
     return formatter
 }()
 
-private let currencyFormatter: NumberFormatter = {
+let mediumDateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .none
+    return formatter
+}()
+
+let currencyFormatter: NumberFormatter = {
     let formatter = NumberFormatter()
     formatter.numberStyle = .currency
     return formatter
 }()
-
-extension Decimal {
-    var doubleValue: Double {
-        return NSDecimalNumber(decimal: self).doubleValue
-    }
-}
 
 struct TransactionList_Previews: PreviewProvider {
     static var previews: some View {

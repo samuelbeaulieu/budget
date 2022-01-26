@@ -51,11 +51,12 @@ struct TransactionRow: View {
     }
 }
 
-private let currencyFormatter: NumberFormatter = {
-    let formatter = NumberFormatter()
-    formatter.numberStyle = .currency
-    return formatter
-}()
+extension NSDecimalNumber {
+    /* returns (aDecimal x -1) */
+    func decimalNumberByNegating() -> NSDecimalNumber {
+        return self.multiplying(by: NSDecimalNumber(mantissa: 1, exponent: 0, isNegative: true));
+    }
+}
 
 struct TransactionRow_Previews: PreviewProvider {
     static var previews: some View {
