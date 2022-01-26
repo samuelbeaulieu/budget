@@ -10,30 +10,54 @@ import SwiftUI
 struct TransactionRow: View {
     var transaction: Transaction
 
+    func getTransactionTypeColor(type: Int32) -> Color {
+        switch type {
+        case 0: return .green
+        case 1: return .red
+        default:
+            return .secondary
+        }
+    }
+
+    func getTransactionAmount(amount: NSDecimalNumber, type: Int32) -> NSDecimalNumber {
+        switch type {
+        case 1:
+            return amount.decimalNumberByNegating()
+        default:
+            return amount
+        }
+    }
+
     var body: some View {
         HStack(alignment: .center) {
-            Rectangle()
-                .fill(.clear)
-                .frame(width: 35, height: 35)
-                .overlay(
-                    Image(systemName: "house")
-                        .foregroundColor(.pink)
-                        .imageScale(.large)
-                )
-                .padding(.trailing, 5)
             VStack(alignment: .leading) {
                 Text(transaction.name!)
-                    .fontWeight(.semibold)
+                    .font(.headline)
                     .lineLimit(1)
-                Text(TransactionType(rawValue: transaction.type)!.displayString)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .lineLimit(1)
+                if transaction.type == 2 {
+                    HStack() {
+                        Text("Chequing")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                        Image(systemName: "arrow.right")
+                            .foregroundColor(.secondary)
+                            .imageScale(.small)
+                        Text("Questrade")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
+                } else {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text("Transportation")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
+                }
             }
+            Spacer()
+            Text(getTransactionAmount(amount: transaction.amount!, type: transaction.type), formatter: currencyFormatter)
+                .foregroundColor(getTransactionTypeColor(type: transaction.type))
         }
-        .badge(
-            Text(transaction.amount!, formatter: currencyFormatter)
-        )
         .contextMenu {
             Button {
                 print("Edit")
