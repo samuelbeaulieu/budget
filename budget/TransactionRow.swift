@@ -92,7 +92,7 @@ struct TransactionRow_Previews: PreviewProvider {
         item.timestamp = Date()
         item.name = "Apple One"
         item.amount = NSDecimalNumber(decimal: 1000)
-        item.type = Int32.random(in: 2...2)
+        item.type = Int32.random(in: 0...2)
         return item
     }()
 

@@ -10,17 +10,11 @@ import SwiftUI
 struct CategoryRow: View {
     var category: Category
     
+    @Binding var isEditingCategory: Bool
+    @Binding var categoryToEdit: Category
+    
     var body: some View {
         HStack(alignment: .center) {
-            Rectangle()
-                .fill(.clear)
-                .frame(width: 35, height: 35)
-                .overlay(
-                    Image(systemName: category.iconName)
-                        .foregroundColor(Color(category.foregroundColor))
-                        .imageScale(.large)
-                )
-                .padding(.trailing, 5)
             Text(category.name)
             Text(CategoryType(rawValue: category.type)!.displayString)
                 .font(.subheadline)
@@ -28,8 +22,8 @@ struct CategoryRow: View {
                 .lineLimit(1)
             Spacer()
             Button {
-//                categoryToEdit = category
-//                isEditingCategory = true
+                categoryToEdit = category
+                isEditingCategory = true
             } label: {
                 Image(systemName: "info.circle")
                     .imageScale(.large)
@@ -39,8 +33,8 @@ struct CategoryRow: View {
         }
         .contextMenu {
             Button {
-//                categoryToEdit = expense
-//                isEditingCategory = true
+                categoryToEdit = category
+                isEditingCategory = true
             } label: {
                 Label("Edit Category", systemImage: "pencil")
             }
@@ -56,7 +50,26 @@ struct CategoryRow: View {
 }
 
 struct CategoryRow_Previews: PreviewProvider {
+    static let persistence = PersistenceController.preview
+        
+    static var item: Category = {
+        let context = persistence.container.viewContext
+        let item = Category(context: context)
+        item.id = UUID()
+        item.name = "Transportation"
+        item.foregroundColor = .blue
+        item.type = Int32.random(in: 0...1)
+        return item
+    }()
+    
     static var previews: some View {
-        CategoryRow(category: Category())
+        List() {
+            NavigationLink {
+                Text("Details View")
+            } label: {
+                CategoryRow(category: item, isEditingCategory: .constant(false), categoryToEdit: .constant(Category()))
+                    .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            }
+        }
     }
 }

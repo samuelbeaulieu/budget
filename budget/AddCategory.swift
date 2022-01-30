@@ -17,7 +17,6 @@ struct AddCategory: View {
     
     @State private var name: String = ""
     
-    @State private var iconName = "car.fill"
     @State private var foregroundColor: Color = Color(.displayP3, red: 0.16, green: 0.37, blue: 0.96)
 //    @State private var backgroundColor: Color = Color(.displayP3, red: 1.0, green: 1.0, blue: 1.0)
     
@@ -27,33 +26,13 @@ struct AddCategory: View {
         Form() {
             Section(header: Text("Preview")) {
                 VStack() {
-                    HStack() {
-                        RoundedRectangle(cornerRadius: 6)
-                            .fill(.clear)
-                            .frame(width: 40, height: 40)
-                            .overlay(
-                                Image(systemName: iconName)
-                                    .foregroundColor(foregroundColor)
-                                    .font(.system(size: 22))
-                            )
-                        Text(name)
-                            .foregroundColor(.black)
-                    }
+                    Text(name)
+                        .foregroundColor(.black)
                 }
                 .listRowBackground(Color.white)
                 VStack() {
-                    HStack() {
-                        RoundedRectangle(cornerRadius: 6)
-                            .fill(.clear)
-                            .frame(width: 40, height: 40)
-                            .overlay(
-                                Image(systemName: iconName)
-                                    .foregroundColor(foregroundColor)
-                                    .font(.system(size: 22))
-                            )
-                        Text(name)
-                            .foregroundColor(.white)
-                    }
+                    Text(name)
+                        .foregroundColor(.white)
                 }
                 .listRowBackground(Color.black)
             }
@@ -62,15 +41,6 @@ struct AddCategory: View {
                 TextField("Category Name", text: $name)
             }
             Section(header: Text("Icon")) {
-                Button {
-                    isPickingSymbol = true
-                } label: {
-                    HStack() {
-                        Text("Symbol")
-                        Spacer()
-                        Image(systemName: iconName)
-                    }
-                }
                 ColorPicker("Foreground color", selection: $foregroundColor, supportsOpacity: false)
 //                ColorPicker("Background color", selection: $backgroundColor, supportsOpacity: false)
             }
@@ -89,11 +59,6 @@ struct AddCategory: View {
                 }
             }
         }
-        .sheet(isPresented: $isPickingSymbol) {
-            NavigationView {
-                SymbolPicker(iconName: $iconName)
-            }
-        }
     }
     
     private func addCategory() {
@@ -102,7 +67,6 @@ struct AddCategory: View {
             let newCategory = Category(context: viewContext)
             newCategory.id = UUID()
             newCategory.name = name
-            newCategory.iconName = iconName
             newCategory.foregroundColor = UIColor(foregroundColor)
 //            newCategory.backgroundColor = UIColor(backgroundColor)
             newCategory.type = categoryType.rawValue

@@ -25,7 +25,6 @@
 		DCA28DF92794D0CF00594C49 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA28DF72794D0CF00594C49 /* Category+CoreDataProperties.swift */; };
 		DCE6E66627837633000F8CB1 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6E66527837633000F8CB1 /* CategoryList.swift */; };
 		DCE6E67E2783A73E000F8CB1 /* AddCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6E67D2783A73E000F8CB1 /* AddCategory.swift */; };
-		DCE6E6802783D4BF000F8CB1 /* SymbolPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6E67F2783D4BF000F8CB1 /* SymbolPicker.swift */; };
 		DCE6E6822783D5A2000F8CB1 /* CategorySymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6E6812783D5A2000F8CB1 /* CategorySymbols.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +68,6 @@
 		DCA28DF72794D0CF00594C49 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DCE6E66527837633000F8CB1 /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 		DCE6E67D2783A73E000F8CB1 /* AddCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategory.swift; sourceTree = "<group>"; };
-		DCE6E67F2783D4BF000F8CB1 /* SymbolPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPicker.swift; sourceTree = "<group>"; };
 		DCE6E6812783D5A2000F8CB1 /* CategorySymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySymbols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,7 +133,6 @@
 				DC06955B27829E83009FCA1A /* Settings.swift */,
 				DCE6E66527837633000F8CB1 /* CategoryList.swift */,
 				DCE6E67D2783A73E000F8CB1 /* AddCategory.swift */,
-				DCE6E67F2783D4BF000F8CB1 /* SymbolPicker.swift */,
 				DCE6E6812783D5A2000F8CB1 /* CategorySymbols.swift */,
 				DC35774C2794B0E000CB8C0C /* EditCategory.swift */,
 				DC36DD5B2795016A00D61FB3 /* TransactionRow.swift */,
@@ -308,7 +305,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCE6E66627837633000F8CB1 /* CategoryList.swift in Sources */,
-				DCE6E6802783D4BF000F8CB1 /* SymbolPicker.swift in Sources */,
 				DCA28DF82794D0CF00594C49 /* Category+CoreDataClass.swift in Sources */,
 				DC36DD5C2795016A00D61FB3 /* TransactionRow.swift in Sources */,
 				DC36DD5E27950E9300D61FB3 /* CategoryRow.swift in Sources */,

@@ -30,7 +30,6 @@ struct PersistenceController {
             newCategory.id = UUID()
             newCategory.type = Int32.random(in: 0...1)
             newCategory.name = "Transportation"
-            newCategory.iconName = "car"
             newCategory.foregroundColor = UIColor.blue
         }
         do {

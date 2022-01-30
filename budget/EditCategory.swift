@@ -15,7 +15,6 @@ struct EditCategory: View {
     @Binding var category: Category
     
     @State private var name: String = ""
-    @State private var iconName = "car.fill"
     @State private var foregroundColor: Color = Color(.displayP3, red: 0.16, green: 0.37, blue: 0.96)
     
     @State private var isPickingSymbol = false
@@ -24,34 +23,13 @@ struct EditCategory: View {
         Form() {
             Section(header: Text("Preview")) {
                 VStack() {
-                    HStack() {
-                        RoundedRectangle(cornerRadius: 6)
-                            .fill(.clear)
-                            .frame(width: 40, height: 40)
-                            .overlay(
-                                Image(systemName: iconName)
-                                    .foregroundColor(foregroundColor)
-//                                    .font(.system(size: 22))
-                                    .imageScale(.medium)
-                            )
-                        Text(category.name)
-                            .foregroundColor(.black)
-                    }
+                    Text(category.name)
+                        .foregroundColor(.black)
                 }
                 .listRowBackground(Color.white)
                 VStack() {
-                    HStack() {
-                        RoundedRectangle(cornerRadius: 6)
-                            .fill(.clear)
-                            .frame(width: 40, height: 40)
-                            .overlay(
-                                Image(systemName: iconName)
-                                    .foregroundColor(foregroundColor)
-                                    .imageScale(.large)
-                            )
-                        Text(category.name)
-                            .foregroundColor(.white)
-                    }
+                    Text(category.name)
+                        .foregroundColor(.white)
                 }
                 .listRowBackground(Color.black)
             }
@@ -60,22 +38,12 @@ struct EditCategory: View {
                 TextField("Category Name", text: $category.name)
             }
             Section(header: Text("Icon")) {
-                Button {
-                    isPickingSymbol = true
-                } label: {
-                    HStack() {
-                        Text("Symbol")
-                        Spacer()
-                        Image(systemName: iconName)
-                    }
-                }
                 ColorPicker("Foreground color", selection: $foregroundColor, supportsOpacity: false)
 //                ColorPicker("Background color", selection: $backgroundColor, supportsOpacity: false)
             }
         }
         .onAppear {
             name = category.name
-//            iconName = category.iconName
             foregroundColor = Color(category.foregroundColor)
 //            backgroundColor = Color(category.backgroundColor)
         }
@@ -93,17 +61,11 @@ struct EditCategory: View {
                 }
             }
         }
-        .sheet(isPresented: $isPickingSymbol) {
-            NavigationView {
-                SymbolPicker(iconName: $iconName)
-            }
-        }
     }
     
     private func addCategory() {
         withAnimation {
             category.name = name
-            category.iconName = iconName
             category.foregroundColor = UIColor(foregroundColor)
 //            category.backgroundColor = UIColor(backgroundColor)
 //            self.category.objectWillChange.send()

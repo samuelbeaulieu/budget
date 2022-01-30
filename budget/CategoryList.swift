@@ -28,7 +28,7 @@ struct CategoryList: View {
     var body: some View {
         List {
             ForEach(filteredCategories) { expense in
-                CategoryRow(category: expense)
+                CategoryRow(category: expense, isEditingCategory: $isEditingCategory, categoryToEdit: $categoryToEdit)
             }
             .onDelete(perform: deleteItems)
             if filteredCategories.isEmpty {
@@ -69,7 +69,6 @@ struct CategoryList: View {
             newCategory.id = UUID()
             newCategory.type = categoryType.rawValue
             newCategory.name = "Transportation"
-            newCategory.iconName = "car"
             newCategory.foregroundColor = UIColor.blue
 //            newCategory.backgroundColor = UIColor.gray
 
