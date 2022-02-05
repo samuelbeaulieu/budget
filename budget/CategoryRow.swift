@@ -53,7 +53,7 @@ struct CategoryRow_Previews: PreviewProvider {
         let item = Category(context: context)
         item.id = UUID()
         item.name = "Transportation"
-        item.foregroundColor = .blue
+//        item.foregroundColor = .blue
         item.type = Int32.random(in: 0...1)
         return item
     }()

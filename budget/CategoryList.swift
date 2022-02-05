@@ -69,7 +69,7 @@ struct CategoryList: View {
             newCategory.id = UUID()
             newCategory.type = categoryType.rawValue
             newCategory.name = "Transportation"
-            newCategory.foregroundColor = UIColor.blue
+//            newCategory.foregroundColor = UIColor.blue
 //            newCategory.backgroundColor = UIColor.gray
 
             do {

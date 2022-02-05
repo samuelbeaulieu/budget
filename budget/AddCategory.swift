@@ -69,8 +69,6 @@ struct AddCategory: View {
             let newCategory = Category(context: viewContext)
             newCategory.id = UUID()
             newCategory.name = name
-            newCategory.foregroundColor = UIColor(foregroundColor)
-//            newCategory.backgroundColor = UIColor(backgroundColor)
             newCategory.type = categoryType.rawValue
 
             do {
