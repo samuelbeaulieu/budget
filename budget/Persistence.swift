@@ -30,7 +30,7 @@ struct PersistenceController {
             newCategory.id = UUID()
             newCategory.type = Int32.random(in: 0...1)
             newCategory.name = "Transportation"
-            newCategory.foregroundColor = UIColor.blue
+//            newCategory.foregroundColor = UIColor.blue
         }
         do {
             try viewContext.save()
