@@ -14,38 +14,11 @@ struct EditCategory: View {
 
     @Binding var category: Category
 
-    @State private var name: String = ""
-    @State private var foregroundColor: Color = Color(.displayP3, red: 0.16, green: 0.37, blue: 0.96)
-    
-    @State private var isPickingSymbol = false
-    
     var body: some View {
         Form() {
-            Section(header: Text("Preview")) {
-                VStack() {
-                    Text(category.name)
-                        .foregroundColor(.black)
-                }
-                .listRowBackground(Color.white)
-                VStack() {
-                    Text(category.name)
-                        .foregroundColor(.white)
-                }
-                .listRowBackground(Color.black)
+            Section(header: Text("Name")) {
+                TextField("Name", text: $category.name)
             }
-            .padding(0)
-            Section(header: Text("Category Name")) {
-                TextField("Category Name", text: $category.name)
-            }
-            Section(header: Text("Icon")) {
-                ColorPicker("Foreground color", selection: $foregroundColor, supportsOpacity: false)
-//                ColorPicker("Background color", selection: $backgroundColor, supportsOpacity: false)
-            }
-        }
-        .onAppear {
-            name = category.name
-            foregroundColor = Color(category.foregroundColor)
-//            backgroundColor = Color(category.backgroundColor)
         }
         .navigationBarTitle("Edit Category")
         .navigationBarTitleDisplayMode(.inline)
@@ -67,11 +40,6 @@ struct EditCategory: View {
 
     private func addCategory() {
         withAnimation {
-            category.name = name
-            category.foregroundColor = UIColor(foregroundColor)
-//            category.backgroundColor = UIColor(backgroundColor)
-//            self.category.objectWillChange.send()
-
             do {
                 try viewContext.save()
                 dismiss()
