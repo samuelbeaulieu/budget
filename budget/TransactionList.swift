@@ -17,12 +17,13 @@ struct TransactionList: View {
     private var transactions: FetchedResults<Transaction>
 
     @State private var showingSheet = false
+    @State private var showingAddSheet = false
 
     func update(_ result: FetchedResults<Transaction>) -> [[Transaction]] {
         return Dictionary(grouping: result) { (element: Transaction) in
-            Calendar.current.startOfDay(for: element.timestamp!)
+            Calendar.current.startOfDay(for: element.timestamp)
         }.values.sorted() {
-            $0[0].timestamp! > $1[0].timestamp!
+            $0[0].timestamp > $1[0].timestamp
         }
     }
 
@@ -31,7 +32,6 @@ struct TransactionList: View {
         for transaction in section {
             if transaction.type == type.rawValue {
                 total = total.adding(transaction.amount)
-                total = total.adding(transaction.amount!)
             }
         }
         return total
@@ -43,7 +43,7 @@ struct TransactionList: View {
                 ForEach(update(transactions), id: \.self) { (section: [Transaction]) in
                     Section(header: (
                         HStack() {
-                            Text(section[0].timestamp!, formatter: mediumDateFormatter)
+                            Text(section[0].timestamp, formatter: mediumDateFormatter)
                             Spacer()
                             Text(getTotalSpent(section, type: TransactionType.income), formatter: currencyFormatter)
                                 .foregroundColor(.green)
@@ -54,10 +54,11 @@ struct TransactionList: View {
                         ForEach(section) { transaction in
                             NavigationLink {
                                 ScrollView() {
-                                    Text(transaction.amount!, formatter: currencyFormatter)
+                                    Text(transaction.amount, formatter: currencyFormatter)
                                         .font(.title)
                                     Text(TransactionType(rawValue: transaction.type)!.displayString)
-                                    Text(transaction.timestamp!, formatter: dateTimeFormatter)
+                                    Text(transaction.timestamp, formatter: dateTimeFormatter)
+                                    Text(transaction.category.name)
                                     Spacer()
                                 }
                                 .navigationBarTitleDisplayMode(.inline)
@@ -68,6 +69,20 @@ struct TransactionList: View {
                                 }
                             } label: {
                                 TransactionRow(transaction: transaction)
+                                    .contextMenu {
+                                        Button {
+                                            print("Edit")
+                                        } label: {
+                                            Label("Edit Transaction", systemImage: "pencil")
+                                        }
+                                        Button(role: .destructive) {
+                                            if let index = transactions.firstIndex(of: transaction) {
+                                                deleteItems(section: section, offsets: [index])
+                                            }
+                                        } label: {
+                                            Label("Delete Transaction", systemImage: "trash")
+                                        }
+                                    }
                             }
                         }
                         .onDelete { indexSet in
@@ -104,6 +119,9 @@ struct TransactionList: View {
             .sheet(isPresented: $showingSheet) {
                 SettingsList()
             }
+            .sheet(isPresented: $showingAddSheet) {
+                AddTransaction()
+            }
         }
     }
 
@@ -122,24 +140,6 @@ struct TransactionList: View {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
-        }
-    }
-}
-
-
-enum TransactionType: Int32, CaseIterable {
-    case income
-    case expense
-    case transfer
-    
-    var displayString: String {
-        switch self {
-        case .expense:
-            return "Expense"
-        case .income:
-            return "Income"
-        case .transfer:
-            return "Transfer"
         }
     }
 }

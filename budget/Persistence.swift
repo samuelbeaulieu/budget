@@ -21,7 +21,7 @@ struct PersistenceController {
             let newTransaction = Transaction(context: viewContext)
             newTransaction.id = UUID()
             newTransaction.timestamp = Date.now.addingTimeInterval(86400 * Double.random(in: 1...7))
-            newTransaction.name = names.randomElement()
+            newTransaction.name = names.randomElement()!
             newTransaction.amount = NSDecimalNumber(floatLiteral: Double.random(in: 20...4526.58))
             newTransaction.type = Int32.random(in: 0...2)
         }

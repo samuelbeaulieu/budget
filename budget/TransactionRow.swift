@@ -10,18 +10,18 @@ import SwiftUI
 struct TransactionRow: View {
     var transaction: Transaction
 
-    func getTransactionTypeColor(type: Int32) -> Color {
+    func getTransactionTypeColor(type: TransactionType) -> Color {
         switch type {
-        case 0: return .green
-        case 1: return .red
+        case .income: return .green
+        case .expense: return .red
         default:
             return .secondary
         }
     }
 
-    func getTransactionAmount(amount: NSDecimalNumber, type: Int32) -> NSDecimalNumber {
+    func getTransactionAmount(amount: NSDecimalNumber, type: TransactionType) -> NSDecimalNumber {
         switch type {
-        case 1:
+        case .expense:
             return amount.decimalNumberByNegating()
         default:
             return amount
@@ -31,10 +31,10 @@ struct TransactionRow: View {
     var body: some View {
         HStack(alignment: .center) {
             VStack(alignment: .leading) {
-                Text(transaction.name!)
+                Text(transaction.name)
                     .font(.headline)
                     .lineLimit(1)
-                if transaction.type == 2 {
+                if TransactionType(rawValue: transaction.type) == .transfer {
                     HStack() {
                         Text("Chequing")
                             .font(.subheadline)
@@ -48,29 +48,15 @@ struct TransactionRow: View {
                     }
                 } else {
                     HStack(alignment: .firstTextBaseline) {
-                        Text("Transportation")
+                        Text(transaction.category.name)
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
                 }
             }
             Spacer()
-            Text(getTransactionAmount(amount: transaction.amount!, type: transaction.type), formatter: currencyFormatter)
-                .foregroundColor(getTransactionTypeColor(type: transaction.type))
-        }
-        .contextMenu {
-            Button {
-                print("Edit")
-            } label: {
-                Label("Edit Transaction", systemImage: "pencil")
-            }
-            Button(role: .destructive) {
-//                if let index = transactions.firstIndex(of: transaction) {
-//                    deleteItems(offsets: [index])
-//                }
-            } label: {
-                Label("Delete Transaction", systemImage: "trash")
-            }
+            Text(getTransactionAmount(amount: transaction.amount, type: TransactionType(rawValue: transaction.type)!), formatter: currencyFormatter)
+                .foregroundColor(getTransactionTypeColor(type: TransactionType(rawValue: transaction.type)!))
         }
     }
 }
