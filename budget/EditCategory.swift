@@ -11,9 +11,9 @@ struct EditCategory: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentation
     @Environment(\.dismiss) var dismiss
-    
+
     @Binding var category: Category
-    
+
     @State private var name: String = ""
     @State private var foregroundColor: Color = Color(.displayP3, red: 0.16, green: 0.37, blue: 0.96)
     
@@ -51,7 +51,9 @@ struct EditCategory: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
-                Button(action: dismissSheet) {
+                Button {
+                    dismiss()
+                } label: {
                     Text("Cancel")
                 }
             }
@@ -62,7 +64,7 @@ struct EditCategory: View {
             }
         }
     }
-    
+
     private func addCategory() {
         withAnimation {
             category.name = name
@@ -72,7 +74,7 @@ struct EditCategory: View {
 
             do {
                 try viewContext.save()
-                dismissSheet()
+                dismiss()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -80,10 +82,6 @@ struct EditCategory: View {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
-    }
-    
-    private func dismissSheet() {
-        dismiss()
     }
 }
 

@@ -49,7 +49,9 @@ struct AddCategory: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
-                Button(action: dismissSheet) {
+                Button {
+                    dismiss()
+                } label: {
                     Text("Cancel")
                 }
             }
@@ -73,7 +75,7 @@ struct AddCategory: View {
 
             do {
                 try viewContext.save()
-                dismissSheet()
+                dismiss()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -81,10 +83,6 @@ struct AddCategory: View {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
-    }
-    
-    private func dismissSheet() {
-        dismiss()
     }
 }
 

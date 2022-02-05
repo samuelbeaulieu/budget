@@ -64,7 +64,9 @@ struct SettingsList: View {
                                 EditButton()
                             }
                             ToolbarItem(placement: .navigationBarTrailing) {
-                                Button(action: dismissSheet) {
+                                Button {
+                                    dismiss()
+                                } label: {
                                     Label("Add Account", systemImage: "plus")
                                 }
                             }
@@ -304,16 +306,14 @@ struct SettingsList: View {
             .navigationTitle("Settings")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(action: dismissSheet) {
+                    Button {
+                        dismiss()
+                    } label: {
                         Text("Done")
                     }
                 }
             }
         }
-    }
-    
-    private func dismissSheet() {
-        dismiss()
     }
 }
 

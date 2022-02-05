@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CategoryList: View {
     var categoryType: CategoryType
-    
+
     @State private var isAddingNewCategory = false
     @State private var isEditingCategory = false
     @State private var categoryToEdit = Category()

@@ -15,7 +15,7 @@ struct TransactionList: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Transaction.timestamp, ascending: false)],
         animation: .default)
     private var transactions: FetchedResults<Transaction>
-    
+
     @State private var showingSheet = false
 
     func update(_ result: FetchedResults<Transaction>) -> [[Transaction]] {
@@ -30,15 +30,13 @@ struct TransactionList: View {
         var total = NSDecimalNumber(decimal: 0)
         for transaction in section {
             if transaction.type == type.rawValue {
-                print("xyz \(transaction.amount!)")
+                total = total.adding(transaction.amount)
                 total = total.adding(transaction.amount!)
-                print("xyz \(total)")
             }
         }
-        print("xyz total \(total)")
         return total
     }
-    
+
     var body: some View {
         NavigationView {
             List {
@@ -84,7 +82,9 @@ struct TransactionList: View {
             .navigationTitle("Transactions")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: openSettingsSheet) {
+                    Button {
+                        showingSheet = true
+                    } label: {
                         Label("Open Settings", systemImage: "gearshape")
                     }
                 }
@@ -94,38 +94,15 @@ struct TransactionList: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: addItem) {
+                    Button {
+                        showingSheet = true
+                    } label: {
                         Label("Add Transaction", systemImage: "plus")
                     }
                 }
             }
             .sheet(isPresented: $showingSheet) {
                 SettingsList()
-            }
-        }
-    }
-    
-    private func openSettingsSheet() {
-        print("openSettingsSheet")
-        showingSheet = true
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newTransaction = Transaction(context: viewContext)
-            newTransaction.id = UUID()
-            newTransaction.timestamp = Date.now.addingTimeInterval(86400 * Double.random(in: 1...7))
-            newTransaction.name = "Apple One"
-            newTransaction.amount = NSDecimalNumber(floatLiteral: Double.random(in: 20...4526.58))
-            newTransaction.type = Int32.random(in: 0...2)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
     }

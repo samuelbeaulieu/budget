@@ -14,9 +14,9 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        
+
         let names = ["Apple One", "Desjardins Assurance Auto", "Petro-Canada", "Subway", "Paiement du prêt"]
-        
+
         for _ in 0..<10 {
             let newTransaction = Transaction(context: viewContext)
             newTransaction.id = UUID()

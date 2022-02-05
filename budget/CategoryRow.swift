@@ -9,17 +9,13 @@ import SwiftUI
 
 struct CategoryRow: View {
     var category: Category
-    
+
     @Binding var isEditingCategory: Bool
     @Binding var categoryToEdit: Category
-    
+
     var body: some View {
         HStack(alignment: .center) {
             Text(category.name)
-            Text(CategoryType(rawValue: category.type)!.displayString)
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-                .lineLimit(1)
             Spacer()
             Button {
                 categoryToEdit = category
