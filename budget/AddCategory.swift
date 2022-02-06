@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct AddCategory: View {
-    var categoryType: CategoryType
-    
     @Environment(\.managedObjectContext) private var viewContext
     
     @Environment(\.presentationMode) var presentation
     @Environment(\.dismiss) var dismiss
     
     @State private var name: String = ""
+    @State private var type: CategoryType = .expense
     
     @State private var foregroundColor: Color = Color(.displayP3, red: 0.16, green: 0.37, blue: 0.96)
 //    @State private var backgroundColor: Color = Color(.displayP3, red: 1.0, green: 1.0, blue: 1.0)
@@ -24,29 +23,17 @@ struct AddCategory: View {
     
     var body: some View {
         Form() {
-            Section(header: Text("Preview")) {
-                VStack() {
-                    Text(name)
-                        .foregroundColor(.black)
+            Picker("Transaction Type", selection: $type) {
+                ForEach(CategoryType.allCases, id: \.self) { category in
+                    Text(category.displayString)
                 }
-                .listRowBackground(Color.white)
-                VStack() {
-                    Text(name)
-                        .foregroundColor(.white)
-                }
-                .listRowBackground(Color.black)
             }
-            .padding(0)
+                .pickerStyle(.segmented)
             Section(header: Text("Category Name")) {
                 TextField("Category Name", text: $name)
             }
-            Section(header: Text("Icon")) {
-                ColorPicker("Foreground color", selection: $foregroundColor, supportsOpacity: false)
-//                ColorPicker("Background color", selection: $backgroundColor, supportsOpacity: false)
-            }
         }
-        .navigationTitle("New \(categoryType.displayString) Category")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("New Category")
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button {
@@ -69,7 +56,7 @@ struct AddCategory: View {
             let newCategory = Category(context: viewContext)
             newCategory.id = UUID()
             newCategory.name = name
-            newCategory.type = categoryType.rawValue
+            newCategory.type = type.rawValue
 
             do {
                 try viewContext.save()
@@ -86,6 +73,6 @@ struct AddCategory: View {
 
 struct AddCategory_Previews: PreviewProvider {
     static var previews: some View {
-        AddCategory(categoryType: .income)
+        AddCategory()
     }
 }
