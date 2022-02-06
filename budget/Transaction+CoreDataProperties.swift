@@ -22,6 +22,8 @@ extension Transaction {
     @NSManaged public var timestamp: Date
     @NSManaged public var type: Int32
     @NSManaged public var category: Category
+    @NSManaged public var accountTo: Account
+    @NSManaged public var accountFrom: Account
 
 }
 

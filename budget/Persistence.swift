@@ -30,7 +30,11 @@ struct PersistenceController {
             newCategory.id = UUID()
             newCategory.type = Int32.random(in: 0...1)
             newCategory.name = "Transportation"
-//            newCategory.foregroundColor = UIColor.blue
+        }
+        for _ in 0..<10 {
+            let newAccount = Account(context: viewContext)
+            newAccount.id = UUID()
+            newAccount.name = "RBC"
         }
         do {
             try viewContext.save()

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21D49" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Account" representedClassName="Account" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <relationship name="ofTransactionFrom" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Transaction" inverseName="accountFrom" inverseEntity="Transaction"/>
+        <relationship name="ofTransactionTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Transaction" inverseName="accountTo" inverseEntity="Transaction"/>
+    </entity>
     <entity name="Category" representedClassName="Category" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String" defaultValueString=""/>
@@ -12,10 +18,13 @@
         <attribute name="name" attributeType="String" defaultValueString=""/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="type" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="accountFrom" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="ofTransactionFrom" inverseEntity="Account"/>
+        <relationship name="accountTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="ofTransactionTo" inverseEntity="Account"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="ofTransaction" inverseEntity="Category"/>
     </entity>
     <elements>
         <element name="Category" positionX="-45" positionY="27" width="128" height="89"/>
-        <element name="Transaction" positionX="-44.40234375" positionY="-1.45703125" width="126.67578125" height="119"/>
+        <element name="Transaction" positionX="-44.40234375" positionY="-1.45703125" width="126.67578125" height="149"/>
+        <element name="Account" positionX="-54" positionY="54" width="128" height="89"/>
     </elements>
 </model>
