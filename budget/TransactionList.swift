@@ -110,7 +110,7 @@ struct TransactionList: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        showingSheet = true
+                        showingAddSheet = true
                     } label: {
                         Label("Add Transaction", systemImage: "plus")
                     }
