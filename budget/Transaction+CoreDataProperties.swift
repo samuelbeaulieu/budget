@@ -24,6 +24,7 @@ extension Transaction {
     @NSManaged public var category: Category
     @NSManaged public var accountTo: Account
     @NSManaged public var accountFrom: Account
+    @NSManaged public var note: String
 
 }
 

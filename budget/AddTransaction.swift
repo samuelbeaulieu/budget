@@ -33,6 +33,7 @@ struct AddTransaction: View {
     @State private var accountFrom: Account = Account()
     @State private var accountTo: Account = Account()
     @State private var date: Date = .now
+    @State private var note: String = ""
 
     var body: some View {
         NavigationView() {
@@ -92,6 +93,7 @@ struct AddTransaction: View {
                     )
                         .datePickerStyle(.automatic)
                 }
+                TextField("Note", text: $note)
             }
             .navigationTitle("New Transaction")
             .toolbar {
@@ -119,6 +121,7 @@ struct AddTransaction: View {
             newTransaction.name = name
             newTransaction.amount = NSDecimalNumber(string: amount)
             newTransaction.type = type.rawValue
+            newTransaction.note = note
             
             if type == .expense {
                 newTransaction.category = category

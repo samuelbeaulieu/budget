@@ -16,6 +16,7 @@
         <attribute name="amount" attributeType="Decimal" minValueString="0" defaultValueString="0.0"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="type" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="accountFrom" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="ofTransactionFrom" inverseEntity="Account"/>
@@ -24,7 +25,7 @@
     </entity>
     <elements>
         <element name="Category" positionX="-45" positionY="27" width="128" height="89"/>
-        <element name="Transaction" positionX="-44.40234375" positionY="-1.45703125" width="126.67578125" height="149"/>
+        <element name="Transaction" positionX="-44.40234375" positionY="-1.45703125" width="126.67578125" height="164"/>
         <element name="Account" positionX="-54" positionY="54" width="128" height="89"/>
     </elements>
 </model>
