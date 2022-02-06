@@ -140,27 +140,10 @@
 				DC8EE8A4278CF4B1008A561B /* budget.entitlements */,
 				DC7AD5072780F4580053BF72 /* Assets.xcassets */,
 				DC7AD5092780F4580053BF72 /* Preview Content */,
-				DC7AD50E2780F4580053BF72 /* budget.xcdatamodeld */,
 				DC7AD50C2780F4580053BF72 /* Persistence.swift */,
 				DC7AD5032780F4570053BF72 /* budgetApp.swift */,
-				DC29F16E27AE37C700465629 /* Transaction+CoreDataClass.swift */,
-				DC29F16F27AE37C700465629 /* Transaction+CoreDataProperties.swift */,
-				DC7AD5052780F4570053BF72 /* TransactionList.swift */,
-				DC36DD5B2795016A00D61FB3 /* TransactionRow.swift */,
-				DC29F16827AE2D0300465629 /* AddTransaction.swift */,
-				DC29F17027AE37C700465629 /* Category+CoreDataClass.swift */,
-				DC29F17127AE37C700465629 /* Category+CoreDataProperties.swift */,
-				DCE6E66527837633000F8CB1 /* CategoryList.swift */,
-				DC36DD5D27950E9300D61FB3 /* CategoryRow.swift */,
-				DCE6E67D2783A73E000F8CB1 /* AddCategory.swift */,
-				DC35774C2794B0E000CB8C0C /* EditCategory.swift */,
-				DCA6FC8227AF777B0002D415 /* Account+CoreDataClass.swift */,
-				DCA6FC8327AF777B0002D415 /* Account+CoreDataProperties.swift */,
-				DCA6FC7A27AF6C3E0002D415 /* AccountList.swift */,
-				DCA6FC7C27AF6C4B0002D415 /* AccountRow.swift */,
-				DCA6FC7E27AF6C620002D415 /* AddAccount.swift */,
-				DCA6FC8027AF6C7A0002D415 /* EditAccount.swift */,
-				DC06955B27829E83009FCA1A /* Settings.swift */,
+				DCA6FC8627B047A80002D415 /* models */,
+				DCA6FC8A27B048080002D415 /* views */,
 			);
 			path = budget;
 			sourceTree = "<group>";
@@ -196,6 +179,95 @@
 				DC8EE8A6278CF518008A561B /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DCA6FC8627B047A80002D415 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				DCA6FC8927B047C30002D415 /* Account */,
+				DCA6FC8827B047BD0002D415 /* Category */,
+				DCA6FC8727B047B20002D415 /* Transaction */,
+				DC7AD50E2780F4580053BF72 /* budget.xcdatamodeld */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		DCA6FC8727B047B20002D415 /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				DC29F16E27AE37C700465629 /* Transaction+CoreDataClass.swift */,
+				DC29F16F27AE37C700465629 /* Transaction+CoreDataProperties.swift */,
+			);
+			path = Transaction;
+			sourceTree = "<group>";
+		};
+		DCA6FC8827B047BD0002D415 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				DC29F17027AE37C700465629 /* Category+CoreDataClass.swift */,
+				DC29F17127AE37C700465629 /* Category+CoreDataProperties.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		DCA6FC8927B047C30002D415 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				DCA6FC8227AF777B0002D415 /* Account+CoreDataClass.swift */,
+				DCA6FC8327AF777B0002D415 /* Account+CoreDataProperties.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		DCA6FC8A27B048080002D415 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				DCA6FC8B27B048BE0002D415 /* Transaction */,
+				DCA6FC8C27B048CB0002D415 /* Category */,
+				DCA6FC8D27B048D40002D415 /* Account */,
+				DCA6FC8E27B048D90002D415 /* Settings */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		DCA6FC8B27B048BE0002D415 /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				DC7AD5052780F4570053BF72 /* TransactionList.swift */,
+				DC36DD5B2795016A00D61FB3 /* TransactionRow.swift */,
+				DC29F16827AE2D0300465629 /* AddTransaction.swift */,
+			);
+			path = Transaction;
+			sourceTree = "<group>";
+		};
+		DCA6FC8C27B048CB0002D415 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				DCE6E66527837633000F8CB1 /* CategoryList.swift */,
+				DC36DD5D27950E9300D61FB3 /* CategoryRow.swift */,
+				DCE6E67D2783A73E000F8CB1 /* AddCategory.swift */,
+				DC35774C2794B0E000CB8C0C /* EditCategory.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		DCA6FC8D27B048D40002D415 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				DCA6FC7A27AF6C3E0002D415 /* AccountList.swift */,
+				DCA6FC7C27AF6C4B0002D415 /* AccountRow.swift */,
+				DCA6FC7E27AF6C620002D415 /* AddAccount.swift */,
+				DCA6FC8027AF6C7A0002D415 /* EditAccount.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		DCA6FC8E27B048D90002D415 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				DC06955B27829E83009FCA1A /* Settings.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
