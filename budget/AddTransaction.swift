@@ -16,6 +16,11 @@ struct AddTransaction: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Category.name, ascending: true)],
         animation: .default)
     private var categories: FetchedResults<Category>
+    
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Account.name, ascending: true)],
+        animation: .default)
+    private var accounts: FetchedResults<Account>
 
     var filteredCategories: [Category] {
         return categories.filter { CategoryType(rawValue: $0.type)?.rawValue == type.rawValue }
@@ -25,6 +30,8 @@ struct AddTransaction: View {
     @State private var name: String = ""
     @State private var amount: String = ""
     @State private var category: Category = Category()
+    @State private var accountFrom: Account = Account()
+    @State private var accountTo: Account = Account()
     @State private var date: Date = .now
 
     var body: some View {
@@ -48,9 +55,29 @@ struct AddTransaction: View {
                     }
                 }
                 TextField("Name", text: $name)
-                Picker("Category", selection: $category) {
-                    ForEach(filteredCategories, id: \.self) {
-                        Text($0.name)
+                if type == .expense || type == .income {
+                    Section() {
+                        Picker("Category", selection: $category) {
+                            ForEach(filteredCategories, id: \.self) {
+                                Text($0.name)
+                            }
+                        }
+                    }
+                }
+                Section(header: Text("Account")) {
+                    if type == .expense || type == .transfer {
+                        Picker("From", selection: $accountFrom) {
+                            ForEach(accounts, id: \.self) {
+                                Text($0.name)
+                            }
+                        }
+                    }
+                    if type == .income || type == .transfer {
+                        Picker("To", selection: $accountTo) {
+                            ForEach(accounts, id: \.self) {
+                                Text($0.name)
+                            }
+                        }
                     }
                 }
                 Section(header: Text("Date")) {
@@ -72,7 +99,7 @@ struct AddTransaction: View {
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(action: addCategory) {
+                    Button(action: addTransaction) {
                         Text("Add")
                     }
                 }
@@ -80,7 +107,7 @@ struct AddTransaction: View {
         }
     }
 
-    private func addCategory() {
+    private func addTransaction() {
         withAnimation {
             let newTransaction = Transaction(context: viewContext)
             newTransaction.id = UUID()
@@ -88,7 +115,17 @@ struct AddTransaction: View {
             newTransaction.name = name
             newTransaction.amount = NSDecimalNumber(string: amount)
             newTransaction.type = type.rawValue
-            newTransaction.category = category
+            
+            if type == .expense {
+                newTransaction.category = category
+                newTransaction.accountFrom = accountFrom
+            } else if type == .income {
+                newTransaction.category = category
+                newTransaction.accountTo = accountTo
+            } else {
+                newTransaction.accountFrom = accountFrom
+                newTransaction.accountTo = accountTo
+            }
 
             do {
                 try viewContext.save()

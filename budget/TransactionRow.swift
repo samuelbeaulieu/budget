@@ -36,13 +36,13 @@ struct TransactionRow: View {
                     .lineLimit(1)
                 if TransactionType(rawValue: transaction.type) == .transfer {
                     HStack() {
-                        Text("Chequing")
+                        Text(transaction.accountFrom.name)
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                         Image(systemName: "arrow.right")
                             .foregroundColor(.secondary)
                             .imageScale(.small)
-                        Text("Questrade")
+                        Text(transaction.accountTo.name)
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
