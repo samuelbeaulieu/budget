@@ -43,7 +43,11 @@ struct AddTransaction: View {
                     }
                 }
                     .pickerStyle(.segmented)
-                    .padding(.vertical)
+                    .onChange(of: type) { newValue in
+                        category = Category()
+                        accountFrom = Account()
+                        accountTo = Account()
+                    }
                 Section(header: Text("Amount")) {
                     HStack(alignment: .firstTextBaseline) {
                         Text("$")
