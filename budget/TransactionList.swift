@@ -166,10 +166,10 @@ struct TransactionList: View {
                         .onDelete { indexSet in
                             deleteItems(section: section, offsets: indexSet)
                         }
-                        if filteredTransactions.isEmpty {
-                            Text("No transactions")
-                        }
                     }
+                }
+                if filteredTransactions.isEmpty {
+                    Text("No transactions")
                 }
             }
             .navigationTitle("Transactions")
