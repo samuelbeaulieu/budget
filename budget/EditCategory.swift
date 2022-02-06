@@ -21,7 +21,6 @@ struct EditCategory: View {
             }
         }
         .navigationBarTitle("Edit Category")
-        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button {
